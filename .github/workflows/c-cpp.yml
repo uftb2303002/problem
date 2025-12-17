@@ -1,0 +1,26 @@
+name: C Build and Run
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install GCC
+        run: sudo apt update && sudo apt install -y gcc
+
+      - name: Compile C program
+        run: gcc back_to_high_s_p.c -o back_to_high_s_p
+
+      - name: Run C program
+        run: ./back_to_high_s_p
